@@ -1,2 +1,2 @@
-# ai.algoruthms_python
+# ai.algorithms_python
 Алгоритмы и структуры данных на Python. 
