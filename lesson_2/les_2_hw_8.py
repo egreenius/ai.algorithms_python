@@ -5,7 +5,7 @@ n = int(input('Сколько чисел Вы хотите ввести? '))
 d = int(input('Какую цифру нужно посчитать? '))
 count = 0
 for i in range(1, n + 1):
-    un = int(input(f'{i} - е число: '))
+    un = int(input(f'{i} - е число: '))  #  можно запоминать строку и искать строка.count(digit)
     while un != 0:
         if un % 10 == d:
             count += 1
