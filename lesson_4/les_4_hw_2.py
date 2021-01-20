@@ -3,7 +3,7 @@
 на вход натуральное и возвращать соответствующее простое число. Проанализировать скорость и сложность алгоритмов.
 """
 
-import cProfile
+import cProfile, math
 
 
 def test_prime_n(k, n=10000):  # функция проверки алгоритма нахождения простого числа по его индексу. k - позиция
@@ -85,6 +85,7 @@ def sieve_i(n):
 #         2    0.000    0.000    0.000    0.000 les_4_hw_2.py:51(<listcomp>)
 # Для больших значений диапазон дважды расширялся. Время исполнения постепенно увеличивается, рекурсивных вызовов нет
 
+
 def prime_i(n):  # функция поиска простых чисел перебором проверкой деления на известные простые числа
     pos = 1  # переменная для хранения последней позиции простого числа в последовательности.
     # В позиции 1 находится число 2
@@ -128,8 +129,72 @@ def prime_i(n):  # функция поиска простых чисел пер�
 
 """
 
-# n = 1200  # натуральное число на входе, представляющее собой индекс (i тое) простое число.
+
+def second(i):
+    primes = [2]
+    num = 3
+    while len(primes) < i:
+        flag = True
+        for j in primes.copy():
+            if num % j == 0:
+                flag = False
+                break
+        if flag:
+            primes.append(num)
+        num += 1
+    return primes[-1]
+
+
+def first(i):
+    primes_qty = 0
+    len_array = 2
+    while primes_qty <= i:
+        primes_qty = len_array / math.log(len_array)
+        len_array += 1
+
+    sieve = [_ for _ in range(2, len_array)]
+
+    for num in sieve:
+        if sieve.index(num) <= num - 1:
+            for j in range(2, len(sieve)):
+                if num * j in sieve[num:]:
+                    sieve.remove(num * j)
+        else:
+            break
+    return sieve[i - 1]
+
+
+def solution1(n, pos):
+    list_n = [i for i in range(n)]
+    list_n[1] = 0
+    for x in range(2, n):
+        if list_n[x] != 0:
+            j = x * 2
+            while j < n:
+                list_n[j] = 0
+                j += x
+    results = [i for i in list_n if i != 0]
+    return results[pos]
+
+
+def solution2(n, pos):
+    results = []
+    for i in range(2, n + 1):
+        for j in range(2, i):
+            if i % j == 0 and i != j:
+                break
+        else:
+            results.append(i)
+    return results[pos]
+
+
+n = 1200  # натуральное число на входе, представляющее собой индекс (i тое) простое число.
 # assert sieve_i(n) == test_prime_n(n)
 # assert prime_i(n) == test_prime_n(n)
-# print('Ok')
+# assert second(n) == test_prime_n(n)
+# assert first(n) == test_prime_n(n)
+# assert solution1(n) == test_prime_n(n)
+# assert solution2(100000, n) == test_prime_n(n)
+print(solution1(10000, 0), test_prime_n(1))
+print('Ok')
 
