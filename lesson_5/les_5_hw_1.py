@@ -26,4 +26,33 @@ for name, profit in data.items():  # распечатываем результа
     elif profit < average_p:
         print(f'Прибыль предприятия {name} ниже среднего {average_p} и составляет {profit}')
 
+"""
+Другой вариант:
+from collections import namedtuple
+n = int(input('Введите количество предприятий: '))
 
+prop = ['q1', 'q2', 'q3', 'q4']
+NewCompany = namedtuple('NewCompany', prop)
+all_companies = {}
+total = 0
+
+for i in range(n):
+    company = input('Укажите название предприятия: ')
+    q = []
+    for j in range(1,5):
+        profit = int(input(f'Укажите прибыль за {j} квартал: '))
+        q.append(profit)
+    all_companies[company] = NewCompany(*q)
+    total += sum(q)
+
+print(f'Вы ввели следующие данные:\n'
+      f'{all_companies}\n'
+      f'Средняя прибыль по предприятиям: {total/n}\n')
+
+for name, profit in all_companies.items():
+    print(f'Прибыль компании "{name}" за год составила: {sum(profit)}')
+    if sum(profit) < total/n:
+        print(f'"{name}" имеет прибыль ниже среднего\n')
+    else:
+        print(f'"{name}" имеет прибыль выше среднего\n')
+"""
