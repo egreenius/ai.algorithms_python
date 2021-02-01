@@ -18,11 +18,9 @@ def create_graph(num):
         n = random.randint(1, num - 1)  # узнаем сколько связей имеет данная вершина
         v_lst[i] = set()  # создаем пустое множество для заполнения списком вершин
 
-#        print(f'Элемент {i}. Очередь {d}. Кол-во связей {n}')
         k = 0
         while k < n or len(v_lst[i]) == 0:  # узнаем, с какими вершинами связана данная
             vertex = random.choice(list(d)[1:])  # случайно выберем вершину для связи из очереди, исключая саму себя
-#            print(f'{list(d)[1:]}. Вершина - {vertex}')
             one_way = random.choice([True, False])  # зададим тип связи - односторонняя или двусторонняя
             if vertex > i:
                 v_lst[i].add(vertex)  # если вершина (vertex) больше текущей, добавляем в список связи без вопросов
@@ -30,7 +28,6 @@ def create_graph(num):
                 v_lst[i].add(vertex)  # для вершин, меньше текущей, при отсутствии связи - добавляем в список
             elif not one_way:
                 v_lst[i].add(vertex)  # если связь уже есть, проверяем тип связи, если односторонняя - пропускаем
-#                print(f'Two way: вершины {i} и {vertex}. one way = {one_way}')
             elif one_way:
                     print(f'One way: вершины {i} и {vertex}. one way = {one_way}')
             k += 1
