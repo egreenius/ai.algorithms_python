@@ -54,3 +54,12 @@ print(*graph_1, sep='\n')
 print(f'Количество рукопожатий: {h_s}')
 assert h_s == (n-1) * n/2
 print('Количество рукопожатий посчитано верно')
+
+# Крутое решение!
+# from functools import reduce
+#
+# n = int(input('Сколько встретилось друзей: '))
+# graph = [[int(i > j) for i in range(n)] for j in range(n)]
+# count = reduce(lambda acc, x: acc + sum(x), graph, 0)
+# print(graph)
+# print(f'Количество рукопожатий {count}')
